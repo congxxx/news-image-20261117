@@ -4,33 +4,37 @@
 
 # World News — Tuesday, 17 November 2026
 
-A single image that sums up one day of world news, laid out like a
-newspaper front page. See the bounty:
+One image that sums up a single day of world news, set out like a
+newspaper front page. The bounty page:
 https://make.fun/bounty/news-image-20261117
 
-## Inside the picture
+## What is in the picture
 
-`entry.png` (1024×1024) opens with the date across the top and holds
-42 stories in total:
+`entry.png` (1024×1024) carries the date across the top and 36
+stories in all:
 
-- **Six lead stories**, two columns by three rows, each with a picture
-  and a short line: the U.S. strikes on Qeshm Island, the Kerch bridge
-  hit a second day, the Xi–Putin–Trump summit set for Thursday in
-  Shenzhen, tighter U.S. AI chip curbs, the U.S. losing measles-free
-  status after 26 years, and the COP31 draft calling for $120bn in
-  climate finance.
-- **Thirty-six briefs** underneath in three columns by twelve rows.
-  Each one pairs a small flat icon with a bold headline — Japan
-  scrambling jets, the Gaza crossings, the Houthis in Yemen, markets,
-  sport, tech, and the National Geographic pictures of the year, among
-  others. No realistic faces anywhere: the small items use icons so the
-  headlines stay readable even at thumbnail size.
+- **Six lead stories**, in two columns and three rows, each with an
+  illustration and a one-line summary: U.S. jets striking a
+  Revolutionary Guard missile site on Qeshm Island, Ukrainian drones
+  hitting the Kerch bridge again, the first three-way Xi–Putin–Trump
+  summit set for Thursday in Shenzhen, the U.S. closing a loophole on
+  AI chips reaching China, the U.S. losing its measles-free status
+  after 26 years, and the COP31 draft calling for $120bn of climate
+  finance.
+- **Thirty briefs** below, in three columns and ten rows. Every brief
+  is a small flat icon next to a short, bold headline — two to four
+  words each, so the titles stay readable even when the page is shown
+  at thumbnail size. The briefs span the Gulf tanker attacks, Gaza,
+  Yemen, Moldova, markets, sport, and tech. Nothing in the picture
+  uses a realistic face: the briefs use icons, the leads use scenes
+  and objects.
 
 ## Running it
 
-`main.ts` runs on Node 22 with the standard library only. It copies
-`entry.png` into `/output/entry.png` and nothing more — no network,
-no drawing, no randomness, so repeated runs give identical bytes.
+`main.ts` needs Node 22 and the standard library only. It copies
+`entry.png` to `/output/entry.png` and does nothing else — no
+network, no drawing, no randomness — so two runs produce identical
+bytes.
 
 ```sh
 node main.ts

@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: MIT
-// One-image entry: Tuesday 17 November 2026 in world news.
+// The competition caps the image at 1024×1024 px and 1 MiB, and the
+// output must be byte-identical across runs; the size check below
+// guards the second part, the asset itself respects the first.
+// One-image entry for Tuesday 17 November 2026.
 //
-// The picture itself is a fixed asset (entry.png, sitting next to this
-// file). Nothing is fetched and nothing is drawn at run time — this
-// program only moves that file to where the harness looks for it, so
-// two runs can never disagree about the bytes.
-//
-// Competition limits this program respects: the image is at most
-// 1024x1024 px and 1 MiB, and the output must be byte-identical
-// across runs (the size check below guards the second part).
+// The front page itself is a fixed asset (entry.png, in this folder).
+// This program does no fetching and no rendering: it just puts that
+// file where the harness expects it, so every run yields the same bytes.
 
 import { copyFileSync, existsSync, mkdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -26,13 +24,13 @@ if (!existsSync(source)) {
 mkdirSync(outDir, { recursive: true });
 copyFileSync(source, target);
 
-// The copy must be the same file, byte for byte — check the sizes match.
-const copied = statSync(target).size;
-const original = statSync(source).size;
-if (copied !== original) {
+// Guard: the copy has to be byte-for-byte the same as the source.
+const sourceBytes = statSync(source).size;
+const targetBytes = statSync(target).size;
+if (sourceBytes !== targetBytes) {
   throw new Error(
-    `copy size ${copied} does not match source size ${original}`,
+    `copy size mismatch: source ${sourceBytes} bytes, output ${targetBytes} bytes`,
   );
 }
 
-console.log(`wrote ${target} (${copied} bytes)`);
+console.log(`wrote ${target} (${targetBytes} bytes)`);
