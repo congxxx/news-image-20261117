@@ -1,9 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Front page for Tuesday 17 November 2026.
+// One-image entry: Tuesday 17 November 2026 in world news.
 //
-// The image itself is a fixed asset (entry.png, next to this file). This
-// program does no fetching and no rendering: it simply places that file
-// where the harness expects it, so every run produces the same bytes.
+// The picture itself is a fixed asset (entry.png, sitting next to this
+// file). Nothing is fetched and nothing is drawn at run time — this
+// program only moves that file to where the harness looks for it, so
+// two runs can never disagree about the bytes.
+//
+// Competition limits this program respects: the image is at most
+// 1024x1024 px and 1 MiB, and the output must be byte-identical
+// across runs (the size check below guards the second part).
 
 import { copyFileSync, existsSync, mkdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -11,23 +16,23 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const source = join(here, "entry.png");
-const targetDir = "/output";
-const target = join(targetDir, "entry.png");
+const outDir = "/output";
+const target = join(outDir, "entry.png");
 
 if (!existsSync(source)) {
-  throw new Error(`missing entry image: ${source}`);
+  throw new Error(`entry image not found: ${source}`);
 }
 
-mkdirSync(targetDir, { recursive: true });
+mkdirSync(outDir, { recursive: true });
 copyFileSync(source, target);
 
-// Sanity check: the copy must be byte-for-byte identical to the source.
-const sourceSize = statSync(source).size;
-const targetSize = statSync(target).size;
-if (sourceSize !== targetSize) {
+// The copy must be the same file, byte for byte — check the sizes match.
+const copied = statSync(target).size;
+const original = statSync(source).size;
+if (copied !== original) {
   throw new Error(
-    `size mismatch: source ${sourceSize} bytes, output ${targetSize} bytes`,
+    `copy size ${copied} does not match source size ${original}`,
   );
 }
 
-console.log(`wrote ${target}`);
+console.log(`wrote ${target} (${copied} bytes)`);

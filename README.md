@@ -4,28 +4,33 @@
 
 # World News — Tuesday, 17 November 2026
 
-One image summing up the day's world news, in the style of a newspaper
-front page.
+A single image that sums up one day of world news, laid out like a
+newspaper front page. See the bounty:
+https://make.fun/bounty/news-image-20261117
 
-## What it is
+## Inside the picture
 
-`entry.png` (1024×1024) carries the date at the top and 42 stories:
+`entry.png` (1024×1024) opens with the date across the top and holds
+42 stories in total:
 
-- **Six feature panels** with an illustration and a one-line summary each:
-  U.S. strikes on Qeshm Island, the Crimea bridge hit again, the
-  Xi–Putin–Trump summit set for Thursday in Shenzhen, U.S. AI chip
-  curbs tightened, the U.S. losing its measles-free status after
-  26 years, and the COP31 draft calling for $120bn in climate finance.
-- **Thirty-six smaller items** in a grid below, covering the rest of the
-  day — from Japan scrambling jets and Gaza crossings to the markets,
-  sport, and the National Geographic pictures of the year.
+- **Six lead stories**, two columns by three rows, each with a picture
+  and a short line: the U.S. strikes on Qeshm Island, the Kerch bridge
+  hit a second day, the Xi–Putin–Trump summit set for Thursday in
+  Shenzhen, tighter U.S. AI chip curbs, the U.S. losing measles-free
+  status after 26 years, and the COP31 draft calling for $120bn in
+  climate finance.
+- **Thirty-six briefs** underneath in three columns by twelve rows.
+  Each one pairs a small flat icon with a bold headline — Japan
+  scrambling jets, the Gaza crossings, the Houthis in Yemen, markets,
+  sport, tech, and the National Geographic pictures of the year, among
+  others. No realistic faces anywhere: the small items use icons so the
+  headlines stay readable even at thumbnail size.
 
-## How it runs
+## Running it
 
-The entry point is `main.ts` (Node 22, standard library only). It copies
-`entry.png` to `/output/entry.png` and does nothing else: no network,
-no rendering, no randomness. Running it twice produces byte-identical
-output.
+`main.ts` runs on Node 22 with the standard library only. It copies
+`entry.png` into `/output/entry.png` and nothing more — no network,
+no drawing, no randomness, so repeated runs give identical bytes.
 
 ```sh
 node main.ts
