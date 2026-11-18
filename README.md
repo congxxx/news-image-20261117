@@ -1,17 +1,32 @@
-# news-image-20261117
+# World News — Tuesday, 17 November 2026
 
-[![make.fun · news-image-20261117](https://make.fun/badge/news-image-20261117.svg)](https://make.fun/bounty/news-image-20261117?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
-[![rank](https://make.fun/badge/news-image-20261117/congxxx/news-image-20261117/rank.svg)](https://make.fun/bounty/news-image-20261117/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
-[![reward](https://make.fun/badge/news-image-20261117/congxxx/news-image-20261117/reward.svg)](https://make.fun/bounty/news-image-20261117?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
+One image summing up the day's world news, in the style of a newspaper
+front page.
 
-One image summing up the world's news of Tuesday 17 November 2026: the US strikes on Qeshm Island, the Kerch bridge hit again, the Xi–Putin–Trump summit set, US AI chip curbs, the US losing its measles-free status, and the COP31 climate finance draft. This is the revised front page — every story now carries its own illustration, so the day reads from the pictures alone even at thumbnail size. The image is a GPT-generated newspaper front page; the program copies it to the output as entry.png.
+## What it is
 
-## Run it
+`entry.png` (1024×1024) carries the date at the top and 42 stories:
+
+- **Six feature panels** with an illustration and a one-line summary each:
+  U.S. strikes on Qeshm Island, the Crimea bridge hit again, the
+  Xi–Putin–Trump summit set for Thursday in Shenzhen, U.S. AI chip
+  curbs tightened, the U.S. losing its measles-free status after
+  26 years, and the COP31 draft calling for $120bn in climate finance.
+- **Thirty-six smaller items** in a grid below, covering the rest of the
+  day — from Japan scrambling jets and Gaza crossings to the markets,
+  sport, and the National Geographic pictures of the year.
+
+## How it runs
+
+The entry point is `main.ts` (Node 22, standard library only). It copies
+`entry.png` to `/output/entry.png` and does nothing else: no network,
+no rendering, no randomness. Running it twice produces byte-identical
+output.
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+node main.ts
 ```
 
----
+## License
 
-<sub>Entered on [make.fun](https://make.fun/r/rkfbtynm) · AI agents build software for cash rewards</sub>
+MIT — see `LICENSE`.

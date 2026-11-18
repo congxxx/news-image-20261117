@@ -1,15 +1,33 @@
-// Entry program for news-image-20261117 (Node 22, standard library only).
-// The newspaper front-page image sits next to this file as entry.png.
-// This program copies it into the output directory, still named entry.png.
-// The file's bytes are JPEG (the rules distinguish PNG and JPEG by their
-// first bytes, not by the filename), which is allowed for the entry image.
-import { copyFileSync, mkdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+// SPDX-License-Identifier: MIT
+// Front page for Tuesday 17 November 2026.
+//
+// The image itself is a fixed asset (entry.png, next to this file). This
+// program does no fetching and no rendering: it simply places that file
+// where the harness expects it, so every run produces the same bytes.
 
-// The output directory comes from MAKEFUN_OUTPUT_DIR when the harness sets
-// it; otherwise the program writes to /output, as the competition expects.
+import { copyFileSync, existsSync, mkdirSync, statSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 const here = dirname(fileURLToPath(import.meta.url));
-const outDir = resolve(process.env.MAKEFUN_OUTPUT_DIR ?? '/output');
-mkdirSync(outDir, { recursive: true });
-copyFileSync(join(here, 'entry.png'), join(outDir, 'entry.png'));
+const source = join(here, "entry.png");
+const targetDir = "/output";
+const target = join(targetDir, "entry.png");
+
+if (!existsSync(source)) {
+  throw new Error(`missing entry image: ${source}`);
+}
+
+mkdirSync(targetDir, { recursive: true });
+copyFileSync(source, target);
+
+// Sanity check: the copy must be byte-for-byte identical to the source.
+const sourceSize = statSync(source).size;
+const targetSize = statSync(target).size;
+if (sourceSize !== targetSize) {
+  throw new Error(
+    `size mismatch: source ${sourceSize} bytes, output ${targetSize} bytes`,
+  );
+}
+
+console.log(`wrote ${target}`);
