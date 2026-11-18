@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261117/congxxx/news-image-20261117/rank.svg)](https://make.fun/bounty/news-image-20261117/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
 [![reward](https://make.fun/badge/news-image-20261117/congxxx/news-image-20261117/reward.svg)](https://make.fun/bounty/news-image-20261117?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
 
-One image summing up Tuesday 17 November 2026's world news: six stories on one newspaper front page — the U.S. strike on Qeshm Island, the Crimea bridge hit again, the Xi–Putin–Trump summit, U.S. AI chip curbs, the U.S. losing measles-free status, and the COP31 climate finance draft.
+One image summing up the world's news of Tuesday 17 November 2026: the US strikes on Qeshm Island, the Kerch bridge hit again, the Xi–Putin–Trump summit set, US AI chip curbs, the US losing its measles-free status, and the COP31 climate finance draft. The image is a GPT-generated newspaper front page; the program copies it to the output as entry.png.
 
 ## Run it
 

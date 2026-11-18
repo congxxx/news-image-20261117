@@ -1,14 +1,16 @@
 // news-image-20261117 entry (Node 22, standard library only).
-// The image is the entry.png beside this file; the program copies it to the
-// grader's output directory. The copy is byte for byte, so repeated runs
-// write identical output. Run locally with:
+// The entry image is entry.png beside this file; this program copies it to
+// the output directory as entry.png. The file is a JPEG by its magic bytes
+// (the rules tell PNG and JPEG apart by content, not by the name).
+//
+// Run locally with:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+
+import { copyFileSync, mkdirSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-const outPath = join(outDir, 'entry.png');
+const here = dirname(fileURLToPath(import.meta.url));
+const outDir = resolve(process.env.MAKEFUN_OUTPUT_DIR ?? '/output');
 mkdirSync(outDir, { recursive: true });
-const src = join(dirname(fileURLToPath(import.meta.url)), 'entry.png');
-writeFileSync(outPath, readFileSync(src));
+copyFileSync(join(here, 'entry.png'), join(outDir, 'entry.png'));
